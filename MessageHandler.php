@@ -16,6 +16,7 @@ use Hanson\Vbot\Message\Emoticon;
 use Hanson\Vbot\Message\Text;
 use Illuminate\Support\Collection;
 
+
 class MessageHandler
 {
     public static function messageHandler(Collection $message)
@@ -38,9 +39,9 @@ class MessageHandler
         RecallType::messageHandler($message);
 
         if ($message['type'] === 'new_friend') {
-            Text::send($message['from']['UserName'], '客官，等你很久了！感谢跟 vbot 交朋友，如果可以帮我点个star，谢谢了！https://github.com/HanSon/vbot');
-            $groups->addMember($groups->getUsernameByNickname('Vbot 体验群'), $message['from']['UserName']);
-            Text::send($message['from']['UserName'], '现在拉你进去vbot的测试群，进去后为了避免轰炸记得设置免骚扰哦！如果被不小心踢出群，跟我说声“拉我”我就会拉你进群的了。');
+            //通过好友请求后第一次发信息
+            Text::send($message['from']['UserName'], '我已经是你的好友了');
+            
         }
 
         if ($message['type'] === 'emoticon' && random_int(0, 1)) {
@@ -54,10 +55,22 @@ class MessageHandler
         }
 
         if ($message['type'] === 'request_friend') {
-            vbot('console')->log('收到好友申请:'.$message['info']['Content'].$message['avatar']);
-            if (in_array($message['info']['Content'], ['echo', 'print_r', 'var_dump', 'print'])) {
-                $friends->approve($message);
-            }
+            vbot('console')->log('收到好友申请:'.$message['info']['Content'].$message['avatar']);           
+                $friends->approve($message); //自动通过
+            
         }
+    }
+
+    //一直触发
+    public static function messageCustomHandler()
+    {
+
+        if(time()%3 == 0)
+        {
+            Text::send('filehelper', '我已经是你的好友了'.time());
+        }
+        
+        
+       
     }
 }

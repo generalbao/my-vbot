@@ -17,14 +17,14 @@ class Hanson
 {
     public static function messageHandler(Collection $message, Friends $friends, Groups $groups)
     {
-        if ($message['from']['NickName'] === 'HanSon') {
+        
             if ($message['type'] === 'text') {
-                if ($message['content'] === 'hi') {
-                    Text::send($message['from']['UserName'], 'hi');
-                }
-                if ($message['content'] === 'object') {
-                    print_r($friends->getObject('HanSon', 'NickName'));
-                }
+                // if ($message['content'] === 'hi') {
+                //     Text::send($message['from']['UserName'], 'hi');
+                // }
+                // if ($message['content'] === 'object') {
+                //     print_r($friends->getObject('HanSon', 'NickName'));
+                // }
             }
 
             if ($message['type'] === 'location') {
@@ -104,6 +104,6 @@ class Hanson
                 Text::send($message['from']['UserName'], '收到名片:'.$message['avatar'].$message['province'].
                     $message['city'].$message['description']);
             }
-        }
+        
     }
 }

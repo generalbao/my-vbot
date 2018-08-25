@@ -25,6 +25,8 @@ class Example
         $robot = new Bot($this->config);
 
         $robot->messageHandler->setHandler([MessageHandler::class, 'messageHandler']);
+        //一直触发
+        $robot->messageHandler->setCustomHandler([MessageHandler::class, 'messageCustomHandler']);
 
         $robot->messageExtension->load([
             // some extensions

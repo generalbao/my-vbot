@@ -74,8 +74,8 @@ return [
     'extension' => [
         // 管理员配置（必选），优先加载 remark_name
         'admin' => [
-            'remark'   => '',
-            'nickname' => 'HanSon',
+            'remark'   => 'generalbao',
+            'nickname' => 'generalbao',
         ],
         'blacklist' => [
             'type' => [
@@ -91,4 +91,5 @@ return [
             },
         ]
     ],
+   
 ];
